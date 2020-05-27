@@ -2,11 +2,16 @@ package com.example.languageswitch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.nio.channels.Selector;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,10 +19,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Spinner spinner = findViewById(R.id.spinner);
-        String selected = spinner.getSelectedItem().toString();
-        Toast.makeText(getApplicationContext(), selected, Toast.LENGTH_SHORT).show();
 
         initViews();
     }
@@ -27,10 +28,25 @@ public class MainActivity extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Spinner spinner = findViewById(R.id.spinner);
+                String selected = spinner.getSelectedItem().toString();
 
+                switch (selected) {
+                    case "Russian":
+                        switchLocale ("ru");
+                        break;
+                    case "English":
+                        switchLocale ("en");
+                        break;
+                }
             }
         });
     }
-
-
+    private void switchLocale (String language) {
+        Locale locale = new Locale(language);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        recreate();
+    }
 }
