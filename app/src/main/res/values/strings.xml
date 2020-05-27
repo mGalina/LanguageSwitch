@@ -5,8 +5,8 @@
     <string name="ok">OK</string>
 
     <string-array name="language">
-        <item>Русский</item>
         <item>Английский</item>
+        <item>Русский</item>
     </string-array>
 
 </resources>

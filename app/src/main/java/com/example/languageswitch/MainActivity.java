@@ -33,9 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (selected) {
                     case "Russian":
+                    case "Русский":
                         switchLocale ("ru");
                         break;
                     case "English":
+                    case "Английский":
                         switchLocale ("en");
                         break;
                 }
